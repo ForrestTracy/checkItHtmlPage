@@ -6,33 +6,66 @@
 </head>
 
 <body>
-    <div id="myData"></div>
+    <p id="myData"></p>
     <script>
-        fetch('https://checkitstyle.com/feed/global', {
-                method: "GET",
-                mode: 'cors',
-                headers: {}
-            })
+        fetch('https://localhost:443/feed/global', {
+            method: "GET",
+            mode: 'cors',
+            headers: {}
+        })
             .then(response => response.json())
-            .then(data => console.log(data))
-            // .then(function (response) {
-            //     return response.json();
-            // })
-            // .then(function (data) {
-            //     appendData(data);
-            // })
+            .then(data => appendData(data))
             .catch(function (err) {
                 console.log('error: ' + err);
             });
         function appendData(data) {
-            var mainContainer = document.getElementById("myData");
+            console.log(data);
             for (var i = 0; i < data.length; i++) {
-                var div = document.createElement("div");
-                div.innerHTML = 'Name: ' + data[i].publisher.userName;
-                mainContainer.appendChild(div);
+            var div = document.createElement("div");
+            div.innerHTML = 'Name: ' + data[i]?.publisher?.userName;
+            document.getElementById("myData").appendChild(div);
+
+            var image = document.createElement("img");
+            image.id = "Id";
+            image.className = "class";
+            image.height = "400";
+            image.src = data[i].images[0];
+            div.appendChild(image);
             }
         }
     </script>
 </body>
 
 </html>
+
+<!-- data
+{
+    "id": 6,
+    "active": true,
+    "commentIds": null,
+    "created": "2023-02-17T22:35:20.550+00:00",
+    "images": [
+        "https://check-it-style-images.s3.amazonaws.com/8disney.jpg"
+    ],
+    "lastUpdated": "2023-02-17T22:35:20.550+00:00",
+    "publisher": {
+        "publisherId": 100,
+        "activePublisher": true,
+        "image": null,
+        "userName": "Forrest",
+        "chatIds": null,
+        "advertiserName": null,
+        "advertiserWebsite": null
+    },
+    "scope": "GLOBAL",
+    "type": "BLOG",
+    "comments": [],
+    "blogText": "People of all ages are addicted to new trends in the world of fashion. There is a tremendous amount of competition within the industry and also among consumers. The style is also different among different cultures and nationalities, and this is why it’s so exciting when one travels to various parts of the planet to observe firsthand how people dress in those countries. The clothes we wear has become more than merely a way to cover our nakedness instead it has also become one of the primary ways in which people express themselves. Garments which may fit one person may not necessarily be equally suitable for someone else. And even should those clothes be fantastic designer’s efforts, it does not mean that everyone would be equally comfortable when wearing those clothes. Different people will need different styles and designs, something which will be an expression of their uniqueness and personality before they will not be comfortable in wearing that specific fashion design. Human beings are complicated creatures; every one of them has different desires, dreams, and objectives which they deem to be essential to reach a certain level of success in their life. Fashion trends are a critical aspect of that success. There is a lot of discrimination among human beings and also a lot of criticism. People will do everything possible to avoid such criticism. Peer pressure is something which continues to affect people all through their lives, and it is a powerful motivator when it comes to crucial fashion decisions. It is also true that fashion design has reached a very sophisticated level and therefore some of the most popular models can be very costly. It has the result that such fashion may only be accessible to affluent people. It can make it very difficult for people of average income to compete when it comes to fashion designs. Fortunately, there has been a lot of progress by fashion designers to cater for the middle-income consumer. It is why there is a lot of fashion designs available which can make it possible for less fortunate people to own still fashion designs which will be of a very high quality and also very attractive. There are fashion items for every season and every occasion, and this makes it possible for people to express themselves differently depending on the specific season or time of the year. When one looks at all the consumer needs which have emerged in modern times, it becomes easy to see why fashion designing has become such a specialized industry. There is also another aspect which deserves contemplating, and that is the fact that there is a measure of similarity in those fashion trends which aim at the low-income person. It is going a long way in avoiding discrimination or unnecessary competition because there is a lot of similarity in the designs which aim at this consumer market. Therefore, it is possible for people that are less affluent to avoid unnecessary discrimination and criticism because in effect they are dressed very similar in many ways to their friends, colleagues or family members. Care should be taken to avoid fashion designs which are of a deficient quality especially in cases where fashion experiments which have failed are nevertheless mass-produced and then dumped on the low-income consumer. On the other hand, some poor people cannot afford anything better and who are therefore left her with no other choice but to purchase those low-quality products. Nevertheless, an eye for detail can be a blessing because this can help a person who may only have access to low-quality fashion items to mix however and match those things very efficiently so that the overall result is nonetheless beautiful. There is some truth to the statement that it’s not what you wear but how you wear it which is the most critical issue. Unfortunately, many people never seem to learn how to combine different fashion items also and adequately correctly. Knowing which colors go together is a very rare gift, and this is something which some people just never master. Therefore, even affluent people with access to very costly fashion items, very often fail to do those things justice because of a lack of understanding when it comes to color matching. There are also many people who seem to think that tight clothing is more attractive than a loose-fitting dress and then they proceed to make fools of themselves by wearing clothes which are unnecessarily close fitting. It is why it is so important to have at least a basic understanding of how to choose your fashion items and also how to properly mix and match those things for the best results. Having access to the most expensive fashion trends on the market is undoubtedly a benefit, but it’s even more important to have a basic sense of how to maximize the way in which the wearer will display those clothes and other articles. Clothes are also known to have a substantial impact on the mood of people, and likewise, some colors are more effective than others to put people in a better place as far as their mindset and emotions are concerned. Every person should do at least a basic modeling course just so that they have a basic understanding of how to make the best of their free clothes and accessories. Like we said earlier, it is not so much what you are wearing but rather how you are wearing it which will ultimately provide proof of your competence as far as fashion and personal appearance is concerned. George K . https://www.thefashionisto.com/content/essay-fashion-important/",
+    "commentCount": 0,
+    "hashTags": "copyPaste, fashionMatters",
+    "likedBy": [],
+    "likes": 0,
+    "title": "Why Fashion Matters"
+}
+
+-->
