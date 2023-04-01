@@ -7,6 +7,9 @@
 
 <body>
     <p id="myData"></p>
+    <!-- <div id="outerRender">-->
+    <div id="feed"></div> 
+    <!-- </div> --> 
     <script>
         fetch('https://localhost:443/feed/global', {
             method: "GET",
@@ -16,24 +19,34 @@
             .then(response => response.json())
             .then(data => appendData(data))
             .catch(function (err) {
-                console.log('error: ' + err);
+                // console.log('error: ' + err);
             });
         function appendData(data) {
-            console.log(data);
+            console.log(data[i]);
+            let html = '';
             for (var i = 0; i < data.length; i++) {
-            var div = document.createElement("div");
-            div.innerHTML = 'Name: ' + data[i]?.publisher?.userName;
-            document.getElementById("myData").appendChild(div);
-
-            var image = document.createElement("img");
-            image.id = "Id";
-            image.className = "class";
-            image.height = "400";
-            image.src = data[i].images[0];
-            div.appendChild(image);
+                // let title = (typeof data[i]?.title  === 'undefined') ? data[i].intro : data[i].title;
+                let title = (typeof data[i]?.title  === 'undefined') ? data[i].intro : data[i].title;
+                html +=
+                    `<div class="publishedElement">
+			            <strong>Published by: ${data[i]?.publisher?.userName}</strong>
+			            <h3>${title}</h3>
+                        <img src="${data[i]?.images[0]}" height="400">
+                        <hr/>
+                    </div>`;
             }
+            document.getElementById("feed").innerHTML = html;
         }
     </script>
+    <style>
+        .myClass {
+            color: white;
+            background-color: DodgerBlue;
+            padding: 20px;
+            text-align: center;
+            margin: 10px;
+        }
+    </style>
 </body>
 
 </html>
